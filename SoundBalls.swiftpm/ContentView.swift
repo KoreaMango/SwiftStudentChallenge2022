@@ -1,17 +1,16 @@
 import SwiftUI
 import SpriteKit
 
-struct ContentView: View {
-    var scene: SKScene {
-        let scene = GameScene()
-        scene.size = CGSize(width: 600, height: 800)
-        scene.scaleMode = .resizeFill
-        scene.backgroundColor = .white
+public struct ContentView: View {
+    public var scene: SKScene {
+        let gameScene = GameScene.shared
+        gameScene.size = CGSize(width: 600, height: 800)
+        gameScene.scaleMode = .resizeFill
         
-        return scene
+        return gameScene
     }
     
-    var body: some View {
+    public var body: some View {
         GeometryReader { geometry in
             SpriteView(scene: scene)
                 .ignoresSafeArea()
