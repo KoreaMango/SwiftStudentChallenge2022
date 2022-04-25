@@ -1,6 +1,6 @@
 //
 //  GameScene.swift
-//  SoundBalls
+//  SoundBall
 //
 //  Created by KangMinGyu on 2022/04/07.
 //
