@@ -1,6 +1,6 @@
-# SoundBall
+# ♫ SoundBall
 
-## Play
+## 🎮 Play
 - You can set the horizontal and vertical walls with the Object Picker on the top.
 - You can set the sound that the wall makes with the Pitch Picker at the top.
 - When the ball hits the wall, it outputs the sound applied to the wall.
