@@ -8,15 +8,15 @@ import PackageDescription
 import AppleProductTypes
 
 let package = Package(
-    name: "SoundBalls",
+    name: "SoundBall",
     platforms: [
         .iOS("15.2")
     ],
     products: [
         .iOSApplication(
-            name: "SoundBalls",
+            name: "SoundBall",
             targets: ["AppModule"],
-            bundleIdentifier: "net.ognam.SoundBalls",
+            bundleIdentifier: "net.ognam.SoundBall",
             teamIdentifier: "TDUR55YWW6",
             displayVersion: "1.0",
             bundleVersion: "1",
