@@ -10,22 +10,23 @@ import SwiftUI
 // MARK: Main View
 struct MenuView: View {
     var body: some View {
-        HStack(){
             VStack(){
-                HStack(){
-                    Text("Object").padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 10))
-                    objectPicker()
+                VStack(){
+                    HStack(){
+                        objectPicker()
+                            .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
+                    }
+                    HStack(){
+                        pitchPicker()
+                            .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 5))
+                    }
                 }
-                HStack(){
-                    Text("Pitch")
-                        .padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
-                    pitchPicker()
+                HStack{
+                    backBtn()
+                    removeBtn()
+                    startStopBtn()
                 }
             }
-            backBtn()
-            removeBtn()
-            startStopBtn()
-        }
     }
 }
 
@@ -55,11 +56,13 @@ struct pitchPicker: View {
                 ForEach(pitches.allCases) { flavor in
                     Text(flavor.rawValue.capitalized)
                         .tag(flavor.suggestedPitches)
+                        
                 }
         }.pickerStyle(.segmented)
             .onChange(of: suggestedPitches){ _ in
                 GameScene.shared.pitchFlag = suggestedPitches.rawValue
             }
+            
     }
 }
 // MARK: BackBtn
