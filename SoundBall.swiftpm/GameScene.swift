@@ -9,6 +9,7 @@ import Foundation
 import SpriteKit
 import SwiftUI
 import AVFoundation
+import Combine
 
 var soundPlayer: AVAudioPlayer!
 
@@ -119,16 +120,15 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     
     //MARK: function
     func playAudio(_ pitch : String){
+        
         guard let audioData = NSDataAsset(name: pitch)?.data else {
-                    fatalError("Asset not found")
-                }
-        do {
-            soundPlayer = try AVAudioPlayer(data: audioData, fileTypeHint: "wav")
-            soundPlayer.play()
-        } catch {
-            fatalError(error.localizedDescription)
-           
+            fatalError("Asset not found")
         }
+        DispatchQueue.global().async {
+            soundPlayer = try! AVAudioPlayer(data: audioData, fileTypeHint: "wav")
+            soundPlayer.play()
+        }
+
     }
     
     func collision(between ball: SKNode, object: SKNode){
