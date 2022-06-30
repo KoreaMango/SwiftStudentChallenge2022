@@ -71,6 +71,7 @@ struct backBtn: View{
         Button(action : backAction ){
             Label("",systemImage: "gobackward")
                 .padding(EdgeInsets(top: 20, leading: 30, bottom: 20, trailing: 20))
+                .foregroundColor(.red)
 
         }
     }
@@ -82,6 +83,7 @@ struct removeBtn: View{
         Button(action : removeAction ){
             Label("",systemImage: "memories")
                 .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
+                .foregroundColor(.yellow)
 
         }
     }
@@ -98,6 +100,7 @@ struct startStopBtn: View{
             }){
                 Label("",systemImage: "play.fill")
                     .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 30))
+                    .foregroundColor(.green)
             }
         }
         else{
@@ -107,6 +110,7 @@ struct startStopBtn: View{
             }){
                 Label("",systemImage: "pause.fill")
                     .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 30))
+                    .foregroundColor(.green)
             }
         }
     }
