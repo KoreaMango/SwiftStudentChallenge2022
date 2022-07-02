@@ -126,7 +126,10 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         }
         DispatchQueue.global().async {
             soundPlayer = try! AVAudioPlayer(data: audioData, fileTypeHint: "wav")
-            soundPlayer.play()
+            DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                    soundPlayer.play()
+              }
+            
         }
 
     }
