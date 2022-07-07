@@ -60,13 +60,10 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     public func didBegin(_ contact: SKPhysicsContact) {
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
-        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
-            firstBody = contact.bodyA
-            secondBody = contact.bodyB
-        } else {
-            firstBody = contact.bodyB
-            secondBody = contact.bodyA
-        }
+        
+        firstBody = contact.bodyB // Ball Body
+        secondBody = contact.bodyA // Wall Body
+          
         if firstBody.categoryBitMask == BallCategory && secondBody.categoryBitMask == C3Category {
             playAudio("C3")
         }
