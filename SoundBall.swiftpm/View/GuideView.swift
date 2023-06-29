@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct launchScreenView : View {
+struct GuideView : View {
     var body: some View {
             ZStack(alignment: .center) {
                 VStack{

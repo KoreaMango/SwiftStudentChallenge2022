@@ -115,9 +115,6 @@ struct startStopBtn: View{
             }
         }
     }
-    
-    
-    
 }
 
 

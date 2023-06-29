@@ -63,7 +63,10 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         
         firstBody = contact.bodyB // Ball Body
         secondBody = contact.bodyA // Wall Body
-          
+        
+        //TODO: 충돌 감지해서 1초안에 6번 이상 충돌하면 공 원 위치
+        print(secondBody.allContactedBodies())
+        
         if firstBody.categoryBitMask == BallCategory && secondBody.categoryBitMask == C3Category {
             playAudio("C3")
         }
@@ -111,6 +114,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     }
     
     //MARK: function
+    //TODO: async await로 수정해보기 
     func playAudio(_ pitch : String){
         guard let audioData = NSDataAsset(name: pitch)?.data else {
             fatalError("Asset not found")
