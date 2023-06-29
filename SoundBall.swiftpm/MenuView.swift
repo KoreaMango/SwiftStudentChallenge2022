@@ -10,23 +10,23 @@ import SwiftUI
 // MARK: Main View
 struct MenuView: View {
     var body: some View {
+        VStack(){
             VStack(){
-                VStack(){
-                    HStack(){
-                        objectPicker()
-                            .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
-                    }
-                    HStack(){
-                        pitchPicker()
-                            .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 5))
-                    }
+                HStack(){
+                    objectPicker()
+                        .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10))
                 }
-                HStack{
-                    backBtn()
-                    removeBtn()
-                    startStopBtn()
+                HStack(){
+                    pitchPicker()
+                        .padding(EdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 5))
                 }
             }
+            HStack{
+                backBtn()
+                removeBtn()
+                startStopBtn()
+            }
+        }
     }
 }
 
@@ -39,10 +39,11 @@ struct objectPicker: View {
                     Text(object.rawValue.capitalized)
                         .tag(object.suggestedObject)
                 }
-        }.pickerStyle(.segmented)
-            .onChange(of: suggestedObject){ _ in
-                GameScene.shared.wallFlag = suggestedObject.rawValue
-            }
+        }
+        .pickerStyle(.segmented)
+        .onChange(of: suggestedObject){ _ in
+            GameScene.shared.wallFlag = suggestedObject.rawValue
+        }
     }
 }
 
@@ -59,7 +60,7 @@ struct pitchPicker: View {
                         
                 }
         }.pickerStyle(.segmented)
-            .onChange(of: suggestedPitches){ _ in
+            .onChange(of: suggestedPitches) { _ in
                 GameScene.shared.pitchFlag = suggestedPitches.rawValue
             }
             
@@ -68,8 +69,8 @@ struct pitchPicker: View {
 // MARK: BackBtn
 struct backBtn: View{
     var body: some View{
-        Button(action : backAction ){
-            Label("",systemImage: "gobackward")
+        Button(action : backAction) {
+            Label("", systemImage: "gobackward")
                 .padding(EdgeInsets(top: 20, leading: 30, bottom: 20, trailing: 20))
                 .foregroundColor(.red)
 
@@ -80,7 +81,7 @@ struct backBtn: View{
 // MARK: BackBtn
 struct removeBtn: View{
     var body: some View{
-        Button(action : removeAction ){
+        Button(action : removeAction ) {
             Label("",systemImage: "memories")
                 .padding(EdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20))
                 .foregroundColor(.yellow)
@@ -94,7 +95,7 @@ struct startStopBtn: View{
     @State var flag : Bool = false
     var body: some View {
         if flag {
-            Button(action :{
+            Button(action : {
                 startBall()
                 flag = false
             }){

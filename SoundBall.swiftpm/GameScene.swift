@@ -52,11 +52,11 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         // Border
         addPhysicsBoundariesToScene()
             
-        
         // Circle
         addBall()
 
     }
+    
     public func didBegin(_ contact: SKPhysicsContact) {
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
@@ -97,27 +97,21 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         if firstBody.categoryBitMask == BallCategory && secondBody.categoryBitMask == F4Category {
             playAudio("F4")
         }
-        
-    }
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        guard let touch = touches.first else { return }
-        let location = touch.location(in: self)
-        
-        if wallFlag == "rectHeight"{
-            addHeightWall(location)
-            
-        }else{
-            addWidthWall(location)
-            
-        }
-
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let location = touch.location(in: self)
+        if wallFlag == "rectHeight"{
+            addHeightWall(location)
+        }
+        else {
+            addWidthWall(location)
+        }
+    }
     
     //MARK: function
     func playAudio(_ pitch : String){
-        
         guard let audioData = NSDataAsset(name: pitch)?.data else {
             fatalError("Asset not found")
         }
@@ -126,9 +120,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             DispatchQueue.global().asyncAfter(deadline: DispatchTime.now() + 0.1) {
                     soundPlayer.play()
               }
-            
         }
-
     }
     
     func collision(between ball: SKNode, object: SKNode){
@@ -137,11 +129,11 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     }
     
     private func addPhysicsBoundariesToScene() {
-           let physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-           physicsBody.friction = 0
-            physicsBody.restitution = 1
-           self.physicsBody = physicsBody
-       }
+        let physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        physicsBody.friction = 0
+        physicsBody.restitution = 1
+        self.physicsBody = physicsBody
+   }
     
     private func addHeightWall(_ location: CGPoint){
         let wallWidth = 50
@@ -163,8 +155,8 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         shapeNodes.push(wall)
         addChild(wall)
         wall.physicsBody?.categoryBitMask = selectCategory(flag: pitchFlag)
-        
     }
+    
     private func addWidthWall(_ location: CGPoint){
         let wallWidth = 50
         let wallHeight = 10
@@ -188,7 +180,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     }
     
     open func addBall(){
-        
         let location = CGPoint(x: self.frame.width/2, y: self.frame.height-100)
         let ball = SKShapeNode(circleOfRadius: circleSize)
         let physicsBody = SKPhysicsBody(circleOfRadius : circleSize)
@@ -199,7 +190,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         physicsBody.restitution = 1.0
         physicsBody.friction = 0.0
         physicsBody.linearDamping = 0.0
-    
         
         ball.physicsBody = physicsBody
         ballNodes.append(ball)
@@ -209,6 +199,7 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
         ball.physicsBody?.collisionBitMask = BallCategory | C3Category | D3Category | E3Category | F3Category | G3Category | A3Category | B3Category | C4Category | D4Category | E4Category | F4Category
         ball.physicsBody?.contactTestBitMask = BallCategory | C3Category | D3Category | E3Category | F3Category | G3Category | A3Category | B3Category | C4Category | D4Category | E4Category | F4Category
     }
+    
     func selectCategory(flag : String) -> UInt32 {
         if flag == "C3"{
             return C3Category
