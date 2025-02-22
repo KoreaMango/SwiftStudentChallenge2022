@@ -11,8 +11,6 @@ import SwiftUI
 import AVFoundation
 import Combine
 
-var soundPlayer: AVAudioPlayer!
-
 // Categories
 let BallCategory        : UInt32 = 0x1 << 0
 let C3Category          : UInt32 = 0x1 << 1
@@ -26,8 +24,6 @@ let C4Category          : UInt32 = 0x1 << 8
 let D4Category          : UInt32 = 0x1 << 9
 let E4Category          : UInt32 = 0x1 << 10
 let F4Category          : UInt32 = 0x1 << 11
-
-
 
 // MARK: - GameScene Class
 class GameScene: SKScene,SKPhysicsContactDelegate {
@@ -54,7 +50,6 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
             
         // Circle
         addBall()
-
     }
     
     public func didBegin(_ contact: SKPhysicsContact) {
@@ -115,13 +110,12 @@ class GameScene: SKScene,SKPhysicsContactDelegate {
     
     //MARK: function
     func playAudio(_ pitch : String){
-        guard let audioData = NSDataAsset(name: pitch)?.data else {
-            fatalError("Asset not found")
+        guard let player = SoundPlayer.shared.audioPlayers[pitch] else {
+            print("Audio player not found for pitch: \(pitch)")
+            return
         }
-        Task {
-            soundPlayer = try! AVAudioPlayer(data: audioData, fileTypeHint: "wav")
-            soundPlayer.play()
-        }
+        player.currentTime = 0
+        player.play()
     }
     
     private func addPhysicsBoundariesToScene() {

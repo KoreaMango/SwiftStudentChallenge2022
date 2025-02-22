@@ -18,7 +18,7 @@ let package = Package(
             targets: ["AppModule"],
             bundleIdentifier: "net.ognam.SoundBall",
             teamIdentifier: "TDUR55YWW6",
-            displayVersion: "1.2.1",
+            displayVersion: "1.4.0",
             bundleVersion: "1",
             iconAssetName: "AppIcon",
             accentColorAssetName: "AccentColor",

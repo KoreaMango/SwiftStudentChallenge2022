@@ -51,6 +51,9 @@ struct GuideView : View {
 
                     Spacer()
             }
+            .onAppear {
+                SoundPlayer.shared.initAudio()
+            }
         }
     }
 }
